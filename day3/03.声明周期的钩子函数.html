@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+<!--    <App></App>-->
+</div>
+<script src="vue.js"></script>
+<script src="vue-router.js"></script>
+<script>
+    const Home = {
+        data() {
+            return {};
+        },
+        template:`<div>我是首页</div>`
+    };
+    const mianfeike = {
+        data() {
+            return {};
+        },
+        template:`<div>我是免费课</div>`
+    };
+    const qingke = {
+        data(){
+            return {};
+        },
+        template:`<div>我是轻课</div>`
+    };
+    // 创建路由
+    const router = new VueRouter({
+        //定义路由规则
+        routes:[
+           {
+                path: '/',
+                name: 'home',
+                component:Home
+            },
+            {
+                path: '/mianfeike',
+                name: 'mianfeike',
+                component:mianfeike,
+            },
+            {
+                path: '/qingke',
+                name:'qingke',
+                component:qingke
+            }
+        ]
+    });
+    // 声明一个导航
+    let App = {
+        data() {
+            return {};
+        },
+        template:`<div>
+                       <div class="header">
+                            <router-link :to="{name:'home'}">首页</router-link>
+                            <router-link :to="{name:'mianfeike'}">免费课</router-link>
+                            <router-link :to="{name:'qingke'}">轻课</router-link>
+                       </div>
+                       // 路由组件的出口
+                       <router-view></router-view>
+                  </div>`
+    };
+
+    new Vue({
+        el:'#app',
+        // 挂载 路由对象
+        router,
+        template:`<App />`,
+        components:{
+            App
+        }
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <App></App>
+</div>
+<script src="vue.js"></script>
+<script src="moment.js"></script>
+<script>
+    Vue.filter('myTime', function (val, formaStr) {
+        return moment(val).format(formaStr)
+    });
+    let App = {
+        data(){
+            return {
+                msg: 'hello world',
+                time: new Date()
+            }
+        },
+        template: `<div>我是一个APP{{ msg | myReverse }}
+                   <h2>{{ time | myTime('YYYY-MM-DD') }}</h2>
+</div>`,
+        filtrs:{
+            myReverse: function (val) {
+                console.log(val);
+                return val.split('').reverse().join('')
+            },
+            // 年-月-日  年-月
+            // myTime:function (val) {
+            //     return moment(new Date()).format('YYYY-MM-DD')
+            // }
+        }
+    }
+
+    new Vue({
+        el:'#app',
+        data(){
+            return {
+
+            }
+        },
+        components: {
+            App
+        }
+    })
+</script>
+</body>
+</html>
